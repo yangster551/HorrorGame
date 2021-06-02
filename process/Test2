@@ -1,0 +1,189 @@
+import random
+import time
+
+#daughter name 
+print()
+print("--------------------- Introduction ---------------------")
+dname = input("What is your daughter's name?\n")
+print( dname + " is your daughter.")
+
+#your name
+print()
+name = input("What is your name?\n")
+print("Welcome "+name +". Best of luck.")
+
+def Intro():
+    #start
+    print()
+    print("---------------------- Doll House ----------------------")
+    start = input("Enter 'start' to begin.\n")
+
+    #story into
+    print()
+    print("Golden rays peek through the blinds.") 
+    print("You hear the faint laughter of your daughter in the backyard.")
+    print("It puts a smile on your face.")
+    print("You look at the clock, it says 5:00 P.M.")
+    print("You doze off...")
+    print()
+
+
+def choosePath():
+    #choices
+    wakeUp = input("Enter 'wake up' to continue\n")
+    #edit make user enter wake up
+    print("\nYou wake up abruptly.")
+    print("You look at the clock, it says 10:00 P.M.")
+    
+    path = ""
+    while path != "call daughter" and path != "search room": # check for input validation
+        path = input("Actions: \n   <call daughter>\n   <search room> \n")
+    return path
+
+def Story(chosen):
+    if chosen == "call daughter":
+        print()
+        print("The laughing is long gone.")
+        print(dname+"!!!")
+        print("No responce.")
+        return 1
+
+    if chosen == "search room":
+        print()
+        print("The room is cold.")
+        print("Shadows loom across the floor.")
+        return 2
+    
+    else:
+        print("Invalid Syntax")
+
+def choosePath2(paths):
+    #choices
+    path = ""
+    if paths == 1:
+        while path != "search room" and path != "go outside" and path != "open light": # check for input validation
+            path = input("Actions: \n   <search room>\n   <go outside> \n")
+    if paths == 2:
+        while path != "call daughter" and path != "go outside" and path != "open light": # check for input validation
+            path = input("Actions: \n   <call daughter>\n   <open light> \n")
+    return path
+
+def Story2(chosen):
+
+    if chosen == "call daughter":
+        print()
+        print("The laughing is long gone.")
+        print(dname+"!!!")
+        print("No responce.")
+        path = input("Actions: \n   <search room>\n   <go outside>\n")
+        return 
+
+    if chosen == "search room":
+        print()
+        print("The room is cold.")
+        print("Shadows loom across the floor.")
+        path = input("Actions: \n   <call daughter>\n   <open light>\n")
+        return path
+
+    if chosen == "go outside":
+        print()
+        print("It's dark.")
+        print("You see a trail of large muddy footsteps.")
+        print("Smaller footsteps follow it.")
+        path = input("Actions: \n   <follow footsteps>\n   <examine trail>\n")
+        return 1
+
+    if chosen == "open light":
+        print()
+        print("You flick on the living room lights.")
+        print("They're bright.")
+        print("To your right, you see a picture")
+        print("To your left, you see a small TV projecting the news.")  
+        path = input("Actions: \n   <look at picture>\n   <look at news>\n")
+        return 2
+
+    else:
+        print("Invalid Syntax")
+
+def choosePath3(paths):
+    #choices
+    path = ""
+    if paths == 1:
+        while path != "search room" and path != "go outside": 
+            path = input("Actions: \n   <follow footsteps>\n   <examine trail> \n")
+    if paths == 2:
+        while path != "call daughter" and path != "open light": 
+            path = input("Actions: \n   <look at picture>\n   <look at news> \n")
+    return path
+
+def Story3(chosen):
+    if chosen == "examine trail":
+        print()
+        print("small blood splatters surround the footsteps")
+        print("You see some of your daughter's hair.")
+        path = input("Actions: \n   <follow trail>")
+
+    if chosen == "follow trail":
+        print()
+        print("you follow the footsteps.")
+        print("the mud squishes beneath your feet")
+        print("It leads you to a tree.")
+        path = input("Actions: \n   <examine tree>\n   <follow trail>")
+
+    if chosen == "look at picture":
+        print()
+        print("It's your daughter.")
+        print("dark hair, pale skin, shinning eyes...")
+        path = input("Actions: \n   <look at news>")
+
+    if chosen == "look at news":
+        print()
+        print("PSYCHOPATH' ON THE LOOSE: Police confirm that a killer who escaped from a psychiatric facility boarded a flight...")
+        print("police and the FBI are trying to track him down...")
+        print("Last spotted was in New Jersey.")
+        path = input("Actions: \n   <look at picture>\n   <call daughter>")
+
+    else:
+        print("Invalid Syntax")
+
+def choosePath4(paths):
+    #choices
+    path = ""
+    if paths == 1:
+        while path != "search room" and path != "go outside": 
+            path = input("Actions: \n   <search room>\n   <go outside> \n")
+    if paths == 2:
+        while path != "call daughter" and path != "open light": 
+            path = input("Actions: \n   <call daughter>\n   <open light> \n")
+    return path
+
+def Story4(chosen):
+    if chosen == "examine tree":
+        print()
+        print("you see a note.")
+        print("Hello " +name+". It's a shame this is how we meet. We will see eachother soon... very soon.")
+        print(dname+" is very beautiful indeed. Very young. Good good. Don't worry... you will see her soon. -D")
+        path = input("Actions: \n   <search room>\n   <continue>")
+
+
+
+
+#def playAgain():
+playAgain = 'yes'
+while playAgain == 'yes':
+    Intro()
+    choice = choosePath()
+    choice2 = Story(choice)
+    choice = choosePath2(choice2)
+    Story2(choice)
+
+    print("Do you want to play again? (yes or no)")
+    playAgain = input()
+"""  
+def main():
+    Intro()
+    choice = choosePath()
+    Story(choice)
+    print("Do you want to play again? (yes or no)")
+    playAgain = 'yes'
+"""
