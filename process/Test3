@@ -1,0 +1,214 @@
+import random
+import time
+
+#daughter name 
+print()
+print("--------------------- Introduction ---------------------")
+dname = input("What is your daughter's name?\n")
+print( dname + " is your daughter.")
+
+#your name
+print()
+name = input("What is your name?\n")
+print("Welcome "+name +". Best of luck.")
+
+def Intro():
+    #start
+    print()
+    print("---------------------- Missing ----------------------")
+    start = input("Enter 'start' to begin.\n")
+
+    print()
+    #import intro
+    print()
+
+
+def choosePath():
+    #choices
+    wakeUp = input("Wake up. Hurry.\n")
+    #edit make user enter wake up
+    print("\nYou wake up abruptly.")
+    print("You look at the clock, it says 10:00 P.M.")
+    
+    path = ""
+    while path != "call daughter" and path != "search room": # check for input validation
+        path = input("Actions: \n   <call daughter>\n   <search room> \n")
+    return path
+
+def Story(chosen):
+    if chosen == "call daughter":
+        print()
+        print(dname+"!!!")
+        time.sleep(1)
+        print("...")
+        time.sleep(1)
+        print("No responce.")
+        return 1
+
+    if chosen == "search room":
+        print()
+        #import searchRoom.txt  
+        return 2
+    
+    else:
+        print("Invalid Syntax")
+
+def choosePath2(paths):
+    #choices
+    path = ""
+    if paths == 1:
+        while path != "search room" and path != "go outside" and path != "open light": # check for input validation
+            path = input("Actions: \n   <search room>\n   <go outside> \n")
+    if paths == 2:
+        while path != "call daughter" and path != "go outside" and path != "open light": # check for input validation
+            path = input("Actions: \n   <call daughter>\n   <open light> \n")
+    return path
+
+def Story2(chosen):
+
+    if chosen == "call daughter":
+        print()
+        print(dname+"!!!")
+        print("...")
+        time.sleep(1)
+        print("No responce.")
+        path = input("Actions: \n   <search room>\n   <go outside>\n")
+        return path
+
+    if chosen == "search room":
+        print()
+        #import searchRoom.txt
+        path = input("Actions: \n   <call daughter>\n   <open light>\n")
+        return path
+
+    if chosen == "go outside":
+        print()
+        #import goOutside.txt
+        return 1
+
+    if chosen == "open light":
+        print()
+        #import openLight.txt
+        return 2
+
+    else:
+        print("Invalid Syntax")
+
+def choosePath3(paths):
+    #choices
+    path = ""
+    if paths == 1:
+        while path != "follow footsteps" and path != "examine trail": 
+            path = input("Actions: \n   <examine trail>\n")
+    if paths == 2:
+        while path != "look at picture" and path != "look at news": 
+            path = input("Actions: \n   <look at picture>\n")
+    return path
+
+def Story3(chosen):
+    if chosen == "examine trail":
+        #examineTrail.txt
+        path = input("Actions: \n   <follow footsteps> \n ")
+        return path
+
+        
+
+    if chosen == "look at picture":
+        #picture.txt
+        path = input("Actions: \n   <look at news>\n")
+        return path
+
+    else:
+        print("Invalid Syntax")
+
+def choosePath4():
+    #choices
+    path = ""
+    while path != "examine tree" and path != "call daughter":
+        path = input("Actions: \n   <examine tree>\n   <call daughter> \n")
+
+    return path
+
+def Story4(chosen):
+    if chosen == "follow footsteps":
+        #followFootsteps.txt
+        path = input("Actions: \n   <examine tree> \n ")
+        return 1
+
+    if chosen == "look at news":
+        #news.txt
+        path = input("Actions: \n   <call daughter>\n") 
+        return path  #end of this path
+
+def choosePath5():
+    if chosen == "examine tree":
+        #tree.txt
+        path = input("Actions: \n   <search room>\n   <continue> \n")  #end of this path
+
+def Story5(chosen): 
+
+
+
+#def playAgain():
+playAgain = 'yes'
+while playAgain == 'yes':
+    Intro()
+    choice = choosePath()
+    choice2 = Story(choice)
+    choice = choosePath2(choice2)
+    end2 = Story2(choice)
+    while end2 != 1 and end2 != 2:
+        end2 = Story2(end2)
+    choice3 = choosePath3(end2)
+    end3 = Story3(choice3)
+    while end3 != 1:
+        end3 = Story3(end3)
+    choice4 = choosePath4()
+    print("Do you want to play again? (yes or no)")
+    playAgain = input()
+"""  
+def main():
+    Intro()
+    choice = choosePath()
+    Story(choice)
+    print("Do you want to play again? (yes or no)")
+    playAgain = 'yes'
+"""
+
+
+
+____________________________________________________________intro txt____________________________________________________________
+July 1 1999
+Golden rays peek through the blinds.
+You hear the faint laughter of your daughter in the backyard.
+It puts a smile on your face.
+You look at the clock, it says 5:00 P.M.
+You doze off...
+____________________________________________________________tree txt____________________________________________________________
+Chunks of your daughters hair hang from the branches.
+a doll lays at the stump of the tree.
+____________________________________________________________picture txt____________________________________________________________
+It's your daughter.
+Dark hair tied into small pigtails. 
+Curious bright blue eyes.
+A white gown falls down to her feet. 
+____________________________________________________________news txt____________________________________________________________
+...people missing...
+____________________________________________________________follow footsteps txt____________________________________________________________
+Mud squishes beneath your feet.
+the trail stops in front of a tree.
+____________________________________________________________examine trail txt____________________________________________________________
+You see your daughter's hair on the ground.
+____________________________________________________________open light txt____________________________________________________________
+You flick on the living room lights.
+hey're bright.
+To your right, you see a picture
+To your left, you see a small TV projecting the news.
+____________________________________________________________search room txt____________________________________________________________
+The room is cold.
+You can't see anything but the faint outlines of furniture.
+____________________________________________________________go outside txt____________________________________________________________
+It's dark.
+You see a trail of small muddy footsteps.
+____________________________________________________________call daughter txt____________________________________________________________
+#Unsure for now, still in main path
