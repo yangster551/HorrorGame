@@ -1,0 +1,24 @@
+import tkinter as tk
+
+class IntroScreen (tk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
+
+        self.imageIntro = tk.PhotoImage(file="image/intro.png")
+        #self.callback = callback
+        self.grid()
+        self.create_widgets()
+
+    def create_widgets(self):
+        tk.Label(self, text = "Intro", font = "Helvetica 32 bold").grid(row = 0, column = 0)
+
+        tk.Label(self, image = self.imageIntro).grid(row = 1, column = 0)
+
+        tk.Label(self, text = "July 1 1999").grid(row = 2, column = 0)
+        tk.Label(self, text = "Golden rays peek through the blinds.").grid(row = 3, column = 0)
+        tk.Label(self, text = "You hear the faint laughter of your daughter in the backyard.").grid(row = 4, column = 0)
+        tk.Label(self, text = "It puts a smile on your face.").grid(row = 5, column = 0)
+        tk.Label(self, text = "You look at the clock, it says 5:00 P.M.").grid(row = 6, column = 0)
+        tk.Label(self, text = "You doze off...").grid(row = 7, column = 0)
+
+        tk.Button(self, text = "Continue", font = "Ariel 14 bold").grid(row = 8, column = 0)
