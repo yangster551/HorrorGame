@@ -1,0 +1,37 @@
+import tkinter as tk
+import introSlide
+import firstChoice
+
+class GameManager (object):
+    def __init__(self):
+
+        self.root = tk.Tk()
+        self.current_screen = None
+        self.current_choice = None
+
+    def setup_intro(self):
+        self.root.title("Intro")
+
+        self.current_screen = introSlide.IntroScreen(master = self.root, callback = self.onclose_intro)
+    
+    def onclose_intro(self):
+        self.current_screen.destroy()
+
+        self.setup_firstchoice()
+    
+    def setup_firstchoice (self):
+        self.root.title("Wake Up!")
+
+        self.current_screen = firstChoice.FirstChoice(master = self.root, callback = self.onclose_first)
+
+    def onclose_first(self, choice):
+        self.current_screen.destroy()
+        
+
+
+def main():
+    screen = GameManager()
+    screen.setup_intro()
+    screen.root.mainloop()
+
+main()
