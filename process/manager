@@ -1,6 +1,7 @@
 import tkinter as tk
 import introSlide
 import firstChoice
+import searchRoom
 
 class GameManager (object):
     def __init__(self):
@@ -26,6 +27,32 @@ class GameManager (object):
 
     def onclose_first(self, choice):
         self.current_screen.destroy()
+
+        if choice == "Search Room":
+            self.setup_search()
+        if choice == "Call Daughter":
+            self.setup_call()
+
+    def setup_search(self):
+        self.root.title("Search Room")
+
+        self.current_screen = searchRoom.SearchRoom(master = self.root, callback = self.onclose_search)
+
+    def setup_call(self):
+        self.root.title("Call Daughter")
+
+    def onclose_search(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Open Light":
+            self.setup_open()
+        if choice == "Call Daughter":
+            self.setup_call()
+
+    
+    def setup_open(self):
+        self.root.title("Open Light")
+
         
 
 
