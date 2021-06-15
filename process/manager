@@ -3,6 +3,12 @@ import introSlide
 import firstChoice
 import searchRoom
 import callDaughter
+import openLight
+import lookPic
+import lookNews
+import examineTrail
+import goOutside
+import followFootsteps
 
 class GameManager (object):
     def __init__(self):
@@ -60,15 +66,81 @@ class GameManager (object):
         if choice == "Go Outside":
             self.setup_go()
         
+    def setup_go(self):
+        self.root.title("Go Outside")
+
+        self.current_screen = goOutside.GoOutside(master = self.root, callback = self.onclose_go)
+
+    def onclose_go(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Examine Trail":
+            self.setup_trail()
+        if choice == "Look At News":
+            self.setup_news()
 
     def setup_open(self):
         self.root.title("Open Light")
 
-    def setup_go(self):
-        self.root.title("Go Outside")
+        self.current_screen = openLight.OpenLight(master = self.root, callback = self.onclose_open)
 
+    def onclose_open(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Look At News":
+            self.setup_news()
+        if choice == "Look At Picture":
+            self.setup_pic()
         
 
+    def setup_news(self):
+        self.root.title("Look At News")
+
+        self.current_screen = lookNews.LookAtNews(master = self.root, callback = self.onclose_news)
+
+    def setup_pic(self):
+        self.root.title("Look At Picture")
+
+        self.current_screen = lookPic.LookAtPic(master = self.root, callback = self.onclose_pic)
+
+    def onclose_pic(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Look At News":
+            self.setup_news()
+
+        if choice == "Examine Trail":
+            self.setup_trail()
+
+    def onclose_news(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Look At Picture":
+            self.setup_pic()
+
+        if choice == "Examine Trail":
+            self.setup_trail()
+
+    def setup_trail(self):
+        self.root.title("Examine Trail")
+
+        self.current_screen = examineTrail.ExamineTrail(master = self.root, callback = self.onclose_trail)
+
+    def onclose_trail(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Look At News":
+            self.setup_news()
+        if choice == "Follow Footsteps":
+            self.setup_foot()
+
+    def setup_foot(self):
+        self.root.title("Follow Footsteps")
+
+        self.current_screen = followFootsteps.FollowFootsteps(master = self.root, callback = self.onclose_foot)
+
+    def onclose_foot(self):
+        self.current_screen.destroy()
 
 def main():
     screen = GameManager()
