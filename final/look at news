@@ -1,0 +1,30 @@
+import tkinter as tk
+
+class LookAtNews (tk.Frame):
+    def __init__(self, master, callback):
+        super().__init__(master)
+
+        self.imageNews = tk.PhotoImage(file="image/lookAtNews.png")
+        self.callback = callback
+        self.grid()
+        self.create_widgets()
+
+    def create_widgets(self):
+        tk.Label(self, text = "Look At News", font = "Helvetica 32 bold").grid(row = 0, column = 0)
+
+        tk.Label(self, image = self.imageNews).grid(row = 1, column = 0)
+
+        tk.Label(self, text = "You turn on the TV.").grid(row = 2, column = 0)
+        tk.Label(self, text = "The news is on.").grid(row = 3, column = 0)
+        tk.Label(self, text = "People Missing.").grid(row = 4, column = 0)
+        tk.Label(self, text = "That's all it says.").grid(row = 5, column = 0)
+        tk.Label(self, text = " ").grid(row = 6, column = 0)
+
+        tk.Button(self, text = "Examine Trail", font = "Ariel 14 bold", command = self.clicked_trail).grid(row = 7, column = 0)
+        tk.Button(self, text = "Look At Picture", font = "Ariel 14 bold", command = self.clicked_pic).grid(row = 8, column = 0)
+
+    def clicked_trail(self):
+        self.callback("Examine Trail")
+
+    def clicked_pic(self):
+        self.callback("Look At Picture")
