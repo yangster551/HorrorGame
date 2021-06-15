@@ -1,0 +1,30 @@
+import tkinter as tk
+
+class FirstChoice(tk.Frame):
+    def __init__(self, master, callback):
+        super().__init__(master)
+
+        self.imageFirst = tk.PhotoImage(file="image/firstChoice.png")
+        self.callback = callback
+        self.grid()
+        self.create_widgets()
+
+    def create_widgets(self):
+        tk.Label(self, text = "Wake Up", font = "Helvetica 32 bold").grid(row = 0, column = 0)
+
+        tk.Label(self, image = self.imageFirst).grid(row = 1, column = 0)
+
+        tk.Label(self, text = "You wake up abruptly.").grid(row = 2, column = 0)
+        tk.Label(self, text = "You look at the clock, it says 10:00 P.M.").grid(row = 3, column = 0)
+        tk.Label(self, text = " ").grid(row = 4, column = 0)
+        tk.Label(self, text = "You now have two choices. ").grid(row = 5, column = 0)
+        tk.Label(self, text = "Select a button to choose your next path.").grid(row = 6, column = 0)
+
+        tk.Button(self, text = "Call Daughter", font = "Ariel 14 bold", command = self.clicked_call).grid(row = 7, column = 0)
+        tk.Button(self, text = "Search Room", font = "Ariel 14 bold", command = self.clicked_search).grid(row = 8, column = 0)
+
+    def clicked_call(self):
+        self.callback("Call Daughter")
+
+    def clicked_search(self):
+        self.callback("Search Room")
