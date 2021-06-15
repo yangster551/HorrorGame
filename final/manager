@@ -1,0 +1,244 @@
+import tkinter as tk
+import introSlide
+import firstChoice
+import searchRoom
+import callDaughter
+import openLight
+import lookPic
+import lookNews
+import examineTrail
+import goOutside
+import followFootsteps
+import timeskip
+import takeDoll
+import checkKitchen
+import checkLivingRoom
+import cookFood
+import examineDoll
+import finish
+
+class GameManager (object):
+    def __init__(self):
+
+        self.root = tk.Tk()
+        self.current_screen = None
+        self.current_choice = None
+
+    def setup_intro(self):
+        self.root.title("Intro")
+
+        self.current_screen = introSlide.IntroScreen(master = self.root, callback = self.onclose_intro)
+    
+    def onclose_intro(self):
+        self.current_screen.destroy()
+
+        self.setup_firstchoice()
+    
+    def setup_firstchoice (self):
+        self.root.title("Wake Up!")
+
+        self.current_screen = firstChoice.FirstChoice(master = self.root, callback = self.onclose_first)
+
+    def onclose_first(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Search Room":
+            self.setup_search()
+        if choice == "Call Daughter":
+            self.setup_call()
+
+    def setup_search(self):
+        self.root.title("Search Room")
+
+        self.current_screen = searchRoom.SearchRoom(master = self.root, callback = self.onclose_search)
+
+    def setup_call(self):
+        self.root.title("Call Daughter")
+
+        self.current_screen = callDaughter.CallDaughter(master = self.root, callback = self.onclose_call)
+
+    def onclose_search(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Open Light":
+            self.setup_open()
+        if choice == "Call Daughter":
+            self.setup_call()
+    
+    def onclose_call(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Search Room":
+            self.setup_search()
+        if choice == "Go Outside":
+            self.setup_go()
+        
+    def setup_go(self):
+        self.root.title("Go Outside")
+
+        self.current_screen = goOutside.GoOutside(master = self.root, callback = self.onclose_go)
+
+    def onclose_go(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Examine Trail":
+            self.setup_trail()
+        if choice == "Look At News":
+            self.setup_news()
+
+    def setup_open(self):
+        self.root.title("Open Light")
+
+        self.current_screen = openLight.OpenLight(master = self.root, callback = self.onclose_open)
+
+    def onclose_open(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Look At News":
+            self.setup_news()
+        if choice == "Look At Picture":
+            self.setup_pic()
+        
+
+    def setup_news(self):
+        self.root.title("Look At News")
+
+        self.current_screen = lookNews.LookAtNews(master = self.root, callback = self.onclose_news)
+
+    def setup_pic(self):
+        self.root.title("Look At Picture")
+
+        self.current_screen = lookPic.LookAtPic(master = self.root, callback = self.onclose_pic)
+
+    def onclose_pic(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Look At News":
+            self.setup_news()
+
+        if choice == "Examine Trail":
+            self.setup_trail()
+
+    def onclose_news(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Look At Picture":
+            self.setup_pic()
+
+        if choice == "Examine Trail":
+            self.setup_trail()
+
+    def setup_trail(self):
+        self.root.title("Examine Trail")
+
+        self.current_screen = examineTrail.ExamineTrail(master = self.root, callback = self.onclose_trail)
+
+    def onclose_trail(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Look At News":
+            self.setup_news()
+        if choice == "Follow Footsteps":
+            self.setup_foot()
+
+    def setup_foot(self):
+        self.root.title("Follow Footsteps")
+
+        self.current_screen = followFootsteps.FollowFootsteps(master = self.root, callback = self.onclose_foot)
+
+    def onclose_foot(self):
+        self.current_screen.destroy()
+
+        self.setup_time()
+
+    def setup_time(self):
+        self.root.title("Timeskip")
+
+        self.current_screen = timeskip.Timeskip(master = self.root, callback = self.onclose_time)
+
+    def onclose_time(self):
+        self.current_screen.destroy()
+
+        self.setup_take()
+
+    def setup_take(self):
+        self.root.title("Take Doll")
+
+        self.current_screen = takeDoll.TakeDoll(master = self.root, callback = self.onclose_take)
+
+    def onclose_take(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Check Kitchen":
+            self.setup_kitchen()
+        if choice == "Check Living Room":
+            self.setup_live()
+
+    def setup_kitchen(self):
+        self.root.title("Check Kitchen")
+
+        self.current_screen = checkKitchen.CheckKitchen(master = self.root, callback = self.onclose_kitchen)
+
+
+    def setup_live(self):
+        self.root.title("Check Living Room")
+
+        self.current_screen = checkLivingRoom.CheckLivingRoom(master = self.root, callback = self.onclose_live)
+
+
+    def onclose_kitchen (self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Check Living Room":
+            self.setup_live()
+        if choice == "Cook Food":
+            self.setup_food()
+
+    def onclose_live(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Check Kitchen":
+            self.setup_kitchen()
+        if choice == "Examine Doll":
+            self.setup_doll() 
+
+    def setup_food(self):
+        self.root.title("Cook Food")
+
+        self.current_screen = cookFood.CookFood(master = self.root, callback = self.onclose_food)
+
+    def setup_doll(self):
+        self.root.title("Examine Doll")
+
+        self.current_screen = examineDoll.ExamineDoll(master = self.root, callback = self.onclose_doll)
+
+    def onclose_food(self, choice):
+        self.current_screen.destroy()
+
+        if choice == "Check Kitchen":
+            self.setup_kitchen()
+        if choice == "Check Living Room":
+            self.setup_live()
+
+    def onclose_doll(self):
+        self.current_screen.destroy()
+
+        self.setup_finish()
+
+    def setup_finish(self):
+        self.root.title("The End")
+
+        self.current_screen = finish.Finish(master = self.root, callback = self.playAgain)
+
+    def playAgain (self):
+        self.current_screen.destroy()
+
+        self.setup_intro()
+
+
+def main():
+    screen = GameManager()
+    screen.setup_intro()
+    screen.root.mainloop()
+
+main()
