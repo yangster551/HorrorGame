@@ -1,0 +1,30 @@
+import tkinter as tk
+
+class TakeDoll (tk.Frame):
+    def __init__(self, master, callback):
+        super().__init__(master)
+
+        self.imagePic = tk.PhotoImage(file="image/takeDoll.png")
+        self.callback = callback
+        self.grid()
+        self.create_widgets()
+
+    def create_widgets(self):
+        tk.Label(self, text = "Take Doll", font = "Helvetica 32 bold").grid(row = 0, column = 0)
+
+        tk.Label(self, image = self.imagePic).grid(row = 1, column = 0)
+
+        tk.Label(self, text = "A smile is plastered on its face.").grid(row = 2, column = 0)
+        tk.Label(self, text = "Her face is dirtied with mud.").grid(row = 3, column = 0)
+        tk.Label(self, text = "Short dark hair roughly chopped at the ends.").grid(row = 4, column = 0)
+        tk.Label(self, text = "Glassy brown eyes...like she was crying?.").grid(row = 5, column = 0)
+        tk.Label(self, text = " ").grid(row = 6, column = 0)
+
+        tk.Button(self, text = "Check Kitchen", font = "Ariel 14 bold", command = self.clicked_kitchen).grid(row = 7, column = 0)
+        tk.Button(self, text = "Check Living Room", font = "Ariel 14 bold", command = self.clicked_live).grid(row = 8, column = 0)
+
+    def clicked_kitchen(self):
+        self.callback("Check Kitchen")
+
+    def clicked_live(self):
+        self.callback("Check Living Room")
